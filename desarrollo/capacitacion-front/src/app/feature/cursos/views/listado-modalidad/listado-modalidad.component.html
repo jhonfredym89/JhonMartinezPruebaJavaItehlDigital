@@ -1,0 +1,37 @@
+<h1>Listado de Cursos por Modalidad</h1>
+
+<mat-form-field appearance="fill">
+  <mat-label>Seleccione el Modulo</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let modulo of modulos" [value]="modulo.valor">{{ modulo.valor }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<table *ngIf="cursos$ | async as cursos" mat-table [dataSource]="cursos" class="mat-elevation-z8">
+  <ng-container matColumnDef="codigo">
+    <th mat-header-cell *matHeaderCellDef> Código </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.codigo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.nombre}} </td>
+  </ng-container>
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.descripcion}} </td>
+  </ng-container>
+  <ng-container matColumnDef="costo">
+    <th mat-header-cell *matHeaderCellDef> Costo </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.costo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="horas">
+    <th mat-header-cell *matHeaderCellDef> Horas </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.horas}} </td>
+  </ng-container>
+  <ng-container matColumnDef="publicoObjetivo">
+    <th mat-header-cell *matHeaderCellDef> Publico Objetivo </th>
+    <td mat-cell *matCellDef="let elemento"> {{elemento.publicoObjetivo}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="camposAVisualizar"></tr>
+  <tr class="cursor-pointer" mat-row *matRowDef="let row; columns: camposAVisualizar;"></tr>
+</table>

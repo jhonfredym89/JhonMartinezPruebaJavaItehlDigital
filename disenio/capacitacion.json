@@ -1,0 +1,243 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Esta es una API que proporciona servicios para la gestión de Cursos",
+    "version": "1.0.0",
+    "title": "Capacitacion"
+  },
+  "host": "localhost:8080",
+  "basePath": "/capacitacion",
+  "tags": [
+    {
+      "name": "Cursos",
+      "description": "Gestión de Cursos impartidos"
+    },
+    {
+      "name": "Descuentos",
+      "description": "Creación de descuentos para los cursos"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/cursos": {
+      "post": {
+        "tags": [
+          "Cursos"
+        ],
+        "summary": "Registra un nuevo Curso",
+        "description": "",
+        "operationId": "registrarCurso",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          ""
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "curso",
+            "description": "Curso que será registrado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Curso"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Curso registrado"
+          },
+          "400": {
+            "description": "El Curso ya existe"
+          },
+          "405": {
+            "description": "Excepción al validar campos obligatorios"
+          }
+        }
+      }
+    },
+    "/cursos/modalidad/{modalidad}": {
+      "get": {
+        "tags": [
+          "Cursos"
+        ],
+        "summary": "Consulta Cursos por la Modalidad",
+        "description": "Retorna todos los Cursos que tengan la Modalidad suministrada",
+        "operationId": "consultarCursosPorModalidad",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "modalidad",
+            "in": "path",
+            "description": "Modalidad del Curso",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta exitosa",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Curso"
+              }
+            }
+          },
+          "204": {
+            "description": "No existen Cursos con la Modalidad suministrada"
+          }
+        }
+      }
+    },
+    "/cursos/{codigo}": {
+      "put": {
+        "tags": [
+          "Cursos"
+        ],
+        "summary": "Actaualiza la información de un Curso",
+        "description": "",
+        "operationId": "actualizarCurso",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          ""
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "description": "Código del Curso a actualizar",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "curso",
+            "description": "Curso que contiene la información nueva",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Curso"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Curso actualizado"
+          },
+		  "404": {
+            "description": "Curso no encontrado"
+          },
+          "405": {
+            "description": "Excepción al validar campos obligatorios"
+          }
+        }
+      }
+    },
+    "/descuentos": {
+      "post": {
+        "tags": [
+          "Descuentos"
+        ],
+        "summary": "Crea un Descuento para un Curso",
+        "description": "",
+        "operationId": "crearDescuento",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          ""
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "curso",
+            "description": "Descuento a crear",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Descuento"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Descuento creado",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          "400": {
+            "description": "El Descuento ya existe"
+          },
+          "404": {
+            "description": "No existe el Curso al que se le quiere crear un Descuento"
+          },
+          "405": {
+            "description": "Excepción al validar campos obligatorios"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Curso": {
+      "type": "object",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "costo": {
+          "type": "number",
+          "format": "float"
+        },
+        "horas": {
+          "type": "number",
+          "format": "float"
+        },
+        "publico_objetivo": {
+          "type": "string"
+        },
+        "modalidad": {
+          "type": "string",
+          "enum": [
+            "Privado",
+            "Online",
+            "OnDemand"
+          ]
+        }
+      }
+    },
+    "Descuento": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "codigoCurso": {
+          "type": "string",
+          "description": "Código del Curso al que se le aplicará el descuento"
+        },
+        "pais": {
+          "type": "string"
+        },
+        "fechaFinal": {
+          "type": "string",
+          "format": "yyyy-mm-dd"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.layout-container {
+    padding: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  mat-nav-list.list-horizontal {
+    padding: 0;
+    .mat-list-item {
+      display: inline-block;
+      height: auto;
+      width: auto;
+      a {
+        color: #fff;
+      }
+    }
+  }
+  
