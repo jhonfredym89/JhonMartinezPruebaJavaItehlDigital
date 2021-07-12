@@ -3,21 +3,11 @@ import { Curso } from "../models/curso.model";
 
 @Injectable()
 export class CursosService {
-    public obtenerCamposAVisualizar(): (keyof Curso)[] {
-        return ['codigo', 'nombre', 'descripcion', 'costo', 'horas', 'publicoObjetivo']
+    public obtenerCamposAVisualizar(): string[] {
+        return ['codigo', 'nombre', 'descripcion', 'costo', 'horas', 'publicoObjetivo', 'acciones']
     }
 
-    public obtenerListadoModalidades(): any[] {
-        return [
-            {
-                valor: 'OnDemand'
-            },
-            {
-                valor: 'Online'
-            },
-            {
-                valor: 'Privado'
-            } 
-        ];
+    public obtenerListadoModalidades(): string[] {
+        return ['OnDemand', 'Online', 'Privado'];
     }
 }

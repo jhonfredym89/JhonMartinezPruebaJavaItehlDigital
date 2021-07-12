@@ -15,4 +15,8 @@ export class CursosApiService {
     public listarPorModulo(modulo: string): Observable<Curso[]> {
         return this.httpClient.get<Curso[]>(`${this.BASE_URL}/modalidad/${modulo}`)
     }
+
+    public registrarCurso(curso: Curso): Observable<string> {
+        return this.httpClient.post<string>(`${this.BASE_URL}`, curso);
+    }
 }

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatListModule } from "@angular/material/list";
 import { LayoutComponent } from '@shared/components/layout/layout.component';
+import { MaterialModule } from '@shared/modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,7 @@ import { LayoutComponent } from '@shared/components/layout/layout.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatListModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

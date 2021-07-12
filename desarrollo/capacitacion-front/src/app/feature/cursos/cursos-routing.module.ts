@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListadoModalidadComponent 
   },
   { 
-    path: 'registro/:codigo', 
+    path: 'registro', 
     component: RegistroComponent 
   }
   ];

@@ -5,9 +5,10 @@ import { CursosRoutingModule } from './cursos-routing.module';
 import { ListadoModalidadComponent } from './views/listado-modalidad/listado-modalidad.component';
 import { RegistroComponent } from './views/registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatFormFieldModule, MatIconModule, MatSelectModule, MatTableModule } from '@angular/material';
 import { CursosApiService } from './services/cursos-api.service';
 import { CursosService } from './services/cursos.service';
+import { MaterialModule } from '@shared/modules/material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,8 @@ import { CursosService } from './services/cursos.service';
     CommonModule,
     CursosRoutingModule,
     HttpClientModule,
-    MatTableModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatSelectModule
+    MaterialModule,
+    RouterModule
   ],
   providers: [
     CursosApiService,
